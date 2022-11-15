@@ -11,4 +11,10 @@ yarn tsc --init
 
 bibioteca para upload 
 https://expressjs.com/en/resources/middleware/multer.html
-yarn add multer
+npm i multer
+npm i mime-types
+npm i --save-dev @types/multer
+npm i --save-dev @types/mime-types
+
+biblioteca para ler arquivo csv
+npm install csv-parser
