@@ -1,0 +1,14 @@
+executa typescript em ambiente de develop
+yarn add ts-node-dev -D
+yarn @types/express -D
+yarn add typescript -D
+
+yarn uuid
+yarn add @types/uuid -D
+
+iniar o typescript
+yarn tsc --init
+
+bibioteca para upload 
+https://expressjs.com/en/resources/middleware/multer.html
+yarn add multer
