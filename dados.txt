@@ -18,3 +18,9 @@ npm i --save-dev @types/mime-types
 
 biblioteca para ler arquivo csv
 npm install csv-parser
+
+documentacao do codigo
+https://swagger.io/
+https://www.npmjs.com/package/swagger-ui-express
+yarn add swagger-ui-express
+yarn add @types/swagger-ui-express -D
