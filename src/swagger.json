@@ -23,13 +23,13 @@
                   "name": {
                     "type": "string"
                   },
-                  "description": {
+                  "email": {
                     "type": "string"
                   }
                 },
                 "exemple": {
                   "name": "category nane sample",
-                  "description": "Category description sample"
+                  "email": "Category description sample"
                 }
               }
             }

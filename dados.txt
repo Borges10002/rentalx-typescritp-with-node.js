@@ -24,3 +24,64 @@ https://swagger.io/
 https://www.npmjs.com/package/swagger-ui-express
 yarn add swagger-ui-express
 yarn add @types/swagger-ui-express -D
+http://localhost:3333/api-docs/
+
+/****************************************************************/
+/*docker*/
+/****************************************************************/
+--extencao do Docker visal code
+Docker
+
+--verificar img disponivel do docker
+https://hub.docker.com/search?q=
+
+criar a img docker
+docker build -t rentx .
+
+verificar se existe uma img
+docker ps
+
+roda o projeto em docker
+docker run -p 3333:3333 rentx
+
+listar o de container docker
+docker ps
+docker ps -a
+
+docker exec -it nome id do projeto
+
+/****************************************************************/
+/*docker compose*/
+/****************************************************************/
+criar
+docker-compose up
+
+executar novamente backgraud
+docker-compose up -d
+
+remover container
+docker-compose rm 5bcfc3bea3db /*id do container ou NAMES*/
+
+iniciar o container
+docker-compose start 5bcfc3bea3db /*id*/
+
+para o container 
+docker-compose stop
+
+remover o container
+docker-compose 
+
+acessar o container
+docker exec -it rentx /bin/bash   /*ls para mostrar*/
+
+verificar ListCategoriesUseCase
+docker logs rentx -verifa os utimos logs 
+docker logs rentx -f  =fica observando
+
+
+
+
+
+
+
+
