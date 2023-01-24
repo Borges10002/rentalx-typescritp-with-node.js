@@ -78,10 +78,20 @@ verificar ListCategoriesUseCase
 docker logs rentx -verifa os utimos logs 
 docker logs rentx -f  =fica observando
 
+typeorem 
+https://typeorm.io/
+npm install typeorm --save
+npm install reflect-metadata --save
+npm install pg --save
 
+deixar habilitado no tsconfig 
+    "experimentalDecorators": true /* Enable experimental support for TC39 stage 2 draft decorators. */,
+    "emitDecoratorMetadata": true
 
-
-
+criar um banco de dados no docker 
+  --docker-compose up --force-recreate
+  --docker logs rentx --f
+  --docker exec database_ignite ip6-loopback
 
 
 

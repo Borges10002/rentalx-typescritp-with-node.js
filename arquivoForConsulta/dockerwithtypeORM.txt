@@ -1,0 +1,148 @@
+--link https://www.notion.so/Refatora-o-Docker-com-TypeORM-4500fc0d075349ac9b97d670e734d41b
+
+# Refatoração Docker com TypeORM
+
+Faaaaala Dev!
+
+Caso a versão do seu `docker-compose` seja `1.28` ou maior, você provavelmente obterá o erro `network_mode is incompatible with port_bindings` ao tentar rodar o comando `docker-compose up` para subir seus containers. Esse erro ocorre pois na última atualização o `network_mode` deixou de ser compatível com a propriedade `ports` . 
+
+Mas calma, nós vamos te passar a solução para seu projeto!
+
+### Passo a passo - Leia até o final 😉
+
+1 - Remova a propriedade `network_mode` no service da aplicação e do banco de dados
+
+2 - No service da aplicação você precisará colocar as seguintes propriedades:
+
+```yaml
+links:
+	- database
+depends_on: 
+	- database
+```
+
+A propriedade `depends_on` irá informar que nosso serviço de **api** irá depender do serviço do banco de dados (database). Isso fará com que a ordem para os containers subirem seja primeiro o serviço **database** e depois o da **api**.
+
+A propriedade `links` faz uma ligação entre os containers,  permitindo que o container de destino (api) tenha informações do container de origem(database). 
+Dessa forma, nosso service da aplicação agora conseguirá se comunicar com nosso banco de dados não mais através do IP, mas sim pelo nome do container. 
+
+3 - No arquivo `ormconfig.json` o  **host** deverá ser preenchido com o valor **localhost**.  
+
+4 - No arquivo **index.ts**, dentro da pasta **database**, deixar da seguinte forma:
+
+```tsx
+import { createConnection, getConnectionOptions } from 'typeorm';
+
+interface IOptions {
+  host: string;
+}
+
+getConnectionOptions().then(options => {
+  const newOptions = options as IOptions;
+  newOptions.host = 'database'; //Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
+  createConnection({
+    ...options,
+  });
+});
+```
+
+5 - Rodar o comando **docker-compose up -d —force-recreate** no terminal, para atualizar as informações do container. 
+
+Para testar, você pode verificar se a aplicação está rodando, através do comando `docker logs rentx -f`
+
+### IMPORTANTE
+
+Testar também as migrations, com o comando `yarn typeorm migration:run`
+
+Se tudo der certo, vencemos o **DOCKER** 🚀
+
+## Explicação
+
+Mas você não disse que utilizando a propriedade `links` conseguiríamos utilizar o nome do service ao invés do IP? Por que então utilizamos **localhost**  no host do **ormconfig.json?** 
+
+O que acontece é que no momento em que o arquivo **ormconfig** é carregado no sistema para iniciar a nossa aplicação, o **typeorm** não consegue utilizar a referência que criamos na propriedade `links`, por isso utilizamos o `[localhost](http://localhost)` como valor para a propriedade `host` .
+
+Por isso no nosso arquivo de configuração de criação de conexão (database/index.ts) precisamos sobrescrever o host do nosso banco de dados, nesse momento sim apontando para o valor que colocamos no `links`.  
+
+Certo! Entendi. Mas por que criamos a interface `IOptions` ? 
+Boa pergunta! A propriedade `host` por padrão é uma propriedade somente de leitura. Se tentarmos sobrescrever o valor dela, o typescript recusa. Por esse motivo criamos uma interface, somente com a propriedade `host` e forçamos que o tipo nas nossas `options` seja da interface. Quando fazemos  `const newOptions = options as IOptions` o nosso atributo `newOptions` e `options` se comportam como se fossem o mesmo objeto e aí com isso conseguimos sobrescrever o valor do host 🙂
+
+## Arquivos completos
+
+Segue abaixo a configuração completa de cada arquivo
+
+### Ormconfig.json
+
+```json
+{
+  "type": "postgres",
+  "port": 5432,
+  "host": "localhost", //Aqui fica como localhost
+  "username": "docker",
+  "password": "ignite",
+  "database": "rentx", 
+  "migrations": ["./src/database/migrations/*.ts"],
+  "entities": ["./src/modules/**/entities/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
+```
+
+### docker-compose.yml
+
+```yaml
+version: "3.9"
+
+services:
+  database: #ESSE É O NOME DO SERVICE QUE DEVE ESTAR NO ARQUIVO DE CRIAÇÃO DE CONEXÃO
+    image: postgres
+    container_name: database_ignite
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=ignite
+      - POSTGRES_DB=rentx
+    volumes:
+      - pgdata:/data/postgres
+
+  app:
+    build: .
+    container_name: rentx
+    restart: always
+    ports: 
+      - 3333:3333
+      - 9229:9229 #Você pode inserir essa porta tbm pra poder usar o debug
+    volumes: 
+      - .:/usr/app
+    links: 
+      - database
+    depends_on:
+      - database
+
+volumes:
+  pgdata:
+    driver: local
+```
+
+### index.ts do database
+
+```tsx
+import { createConnection, getConnectionOptions } from 'typeorm';
+
+interface IOptions {
+  host: string;
+}
+
+getConnectionOptions().then(options => {
+  const newOptions = options as IOptions;
+  newOptions.host = 'database'; //Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
+  createConnection({
+    ...options,
+  });
+});
+```
+
+Agora é só continuar codando 😉
