@@ -96,6 +96,7 @@ npm install pg --save
 
 typeorem create migrations
   yarn typeorm migration:create -n CreateCategories
+  yarn typeorm migration:create -n CreateUsers 
 
 typeorem gerar tabela no banco
   yarn typeorm migration:run
@@ -104,6 +105,9 @@ typeorem excluir tabela no banco
    yarn typeorm migration:revert
 
 
+biblioteca tsyringe
+  --https://github.com/microsoft/tsyringe
+  --yarn add tsyringe
   
 
 
