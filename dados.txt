@@ -116,7 +116,13 @@ biblioteca tsyringe
 bibioteca de griptografar senha
   --yarn add bcrypt
   --yarn add @types/bcrypt -D
-  
+
+bibioteca de autenticacao de usuario 
+   --yarn add jsonwebtoken
+   --yarn add @types jsonwebtoken -D
 
 
+bibioteca de token
+  --yarn add jsonwebtoken
+  --yarn add @types/jsonwebtoken
 
