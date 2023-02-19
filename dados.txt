@@ -105,7 +105,8 @@ typeorem excluir tabela no banco
    yarn typeorm migration:revert
 
 typeorem deletar uma Column
-   --yarn typeorm migration:create -n AlterUserDeleteUsername
+   yarn typeorm migration:create -n AlterUserDeleteUsername
+   yarn typeorm migration:create -n AlterUserAvatar  
 
 
 biblioteca tsyringe
