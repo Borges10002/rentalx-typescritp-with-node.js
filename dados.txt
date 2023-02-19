@@ -126,3 +126,5 @@ bibioteca de token
   --yarn add jsonwebtoken
   --yarn add @types/jsonwebtoken
 
+bibioteca de erros 
+  yarn add express-async-errors
