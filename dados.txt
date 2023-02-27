@@ -129,3 +129,23 @@ bibioteca de token
 
 bibioteca de erros 
   yarn add express-async-errors
+
+
+4 - Chapter IV - node.js <<<teste>>>
+  https://jestjs.io/pt-BR/docs/getting-started
+
+  bibioteca 
+   yarn add jest
+   yarn add @types/jest -D 
+   yarn add ts-jest -D 
+  
+   yarn jest --init
+
+√ Would you like to use Jest when running "test" script in "package.json"? ... yes
+√ Would you like to use Typescript for the configuration file? ... yes
+√ Choose the test environment that will be used for testing » node
+√ Do you want Jest to add coverage reports? ... no
+√ Which provider should be used to instrument code for coverage? » v8
+√ Automatically clear mock calls, instances, contexts and results before every test? ... yes
+
+
