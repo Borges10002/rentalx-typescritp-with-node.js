@@ -148,4 +148,5 @@ bibioteca de erros
 √ Which provider should be used to instrument code for coverage? » v8
 √ Automatically clear mock calls, instances, contexts and results before every test? ... yes
 
-
+bibioteca para entender o @ de importaca 
+  yarn add tsconfig-paths -D

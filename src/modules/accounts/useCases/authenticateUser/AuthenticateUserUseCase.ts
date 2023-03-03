@@ -1,8 +1,7 @@
+import { IUserRepository } from "@modules/accounts/repositories/IUserRepository";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
-
-import { IUserRepository } from "../../repositories/IUserRepository";
 
 interface IRequest {
   email: string;
