@@ -2,7 +2,6 @@
 
 **RF** ->Requisito funcionais
   Deve ser possivel cadastrar u carro
-  Deve ser possivel listar todas as categorias
 
 
 **RN** -> Regra de negócios
