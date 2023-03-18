@@ -24,8 +24,6 @@ O usuário náo precisar estar logado no sistema
 
 **RF** ->Requisito funcionais
 Deve ser possivel cadastrar um espeficicação para um carro
-Deve ser possivel listar todas as espeficicações
-Deve ser possivel listar todos os carros
 
 **RN** -> Regra de negócios
 Não deve ser possivel cadastrar uma espeficicação para um carro não cadastrado.
