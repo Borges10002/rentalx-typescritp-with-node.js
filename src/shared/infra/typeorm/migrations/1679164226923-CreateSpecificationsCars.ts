@@ -5,13 +5,13 @@ import {
   TableForeignKey,
 } from "typeorm";
 
-export class CreateSpecificationsCars1679164226923
+export class CreateSpecificationsCars1666136409103
   implements MigrationInterface
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "spefifications_cars",
+        name: "specifications_cars",
         columns: [
           {
             name: "car_id",
@@ -31,7 +31,7 @@ export class CreateSpecificationsCars1679164226923
     );
 
     await queryRunner.createForeignKey(
-      "spefifications_cars",
+      "specifications_cars",
       new TableForeignKey({
         name: "FKSpecificationCar",
         referencedTableName: "specifications",
@@ -43,7 +43,7 @@ export class CreateSpecificationsCars1679164226923
     );
 
     await queryRunner.createForeignKey(
-      "spefifications_cars",
+      "specifications_cars",
       new TableForeignKey({
         name: "FKCarSpecification",
         referencedTableName: "cars",
@@ -57,14 +57,13 @@ export class CreateSpecificationsCars1679164226923
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey(
-      "spefifications_cars",
+      "specifications_cars",
       "FKCarSpecification"
     );
     await queryRunner.dropForeignKey(
-      "spefifications_cars",
+      "specifications_cars",
       "FKSpecificationCar"
     );
-
-    await queryRunner.dropTable("spefifications_cars");
+    await queryRunner.dropTable("specifications_cars");
   }
 }
