@@ -150,3 +150,6 @@ bibioteca de erros
 
 bibioteca para entender o @ de importaca 
   yarn add tsconfig-paths -D
+
+bibioteca de validacao de datas 
+  yarn add dayjs
