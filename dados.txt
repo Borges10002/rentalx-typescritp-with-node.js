@@ -153,3 +153,6 @@ bibioteca para entender o @ de importaca
 
 bibioteca de validacao de datas 
   yarn add dayjs
+
+bibioteca SUPERTESTE
+ yarn add supertest @types/supertest -D
