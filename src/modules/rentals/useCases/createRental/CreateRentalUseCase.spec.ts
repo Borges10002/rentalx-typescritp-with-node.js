@@ -4,9 +4,11 @@ import { RentalsRepositoryInMemory } from "@modules/rentals/repositories/in-memo
 import { AppError } from "@shared/errors/AppError";
 import { CreateRentalUseCases } from "./CreateRentalUseCases";
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
+import { CarsRepositoryInMemory } from "@modules/cars/repositories/in-memory/CarsRepositoryInMemory";
 
 let createRentalUseCases: CreateRentalUseCases;
 let rentalsRepositoryInMemory: RentalsRepositoryInMemory;
+let carsRepositoryInMemory: CarsRepositoryInMemory;
 let dayjsProvider: DayjsDateProvider;
 
 describe("Create Rental", () => {
@@ -14,10 +16,12 @@ describe("Create Rental", () => {
 
   beforeEach(() => {
     rentalsRepositoryInMemory = new RentalsRepositoryInMemory();
+    carsRepositoryInMemory = new CarsRepositoryInMemory();
     dayjsProvider = new DayjsDateProvider();
     createRentalUseCases = new CreateRentalUseCases(
       rentalsRepositoryInMemory,
-      dayjsProvider
+      dayjsProvider,
+      carsRepositoryInMemory
     );
   });
 
@@ -27,8 +31,6 @@ describe("Create Rental", () => {
       car_id: "121212",
       expected_return_date: dayAdd24Hours,
     });
-
-    console.log(rental);
 
     expect(rental).toHaveProperty("id");
     // expect(rental).toHaveProperty("start_date");
