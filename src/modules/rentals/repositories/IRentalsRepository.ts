@@ -8,4 +8,5 @@ interface IRentalsRepository {
   findById(id: string): Promise<Rental>;
   findByUser(user_id: string): Promise<Rental[]>;
 }
+
 export { IRentalsRepository };

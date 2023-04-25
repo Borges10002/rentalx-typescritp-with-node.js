@@ -1,9 +1,10 @@
+import { inject, injectable } from "tsyringe";
+
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "@shared/errors/AppError";
-import { inject, injectable } from "tsyringe";
 
 interface IRequest {
   user_id: string;
@@ -12,7 +13,7 @@ interface IRequest {
 }
 
 @injectable()
-class CreateRentalUseCases {
+class CreateRentalUseCase {
   constructor(
     @inject("RentalsRepository")
     private rentalsRepository: IRentalsRepository,
@@ -21,6 +22,7 @@ class CreateRentalUseCases {
     @inject("CarsRepository")
     private carsRepository: ICarsRepository
   ) {}
+
   async execute({
     user_id,
     car_id,
@@ -33,15 +35,15 @@ class CreateRentalUseCases {
     );
 
     if (carUnavailable) {
-      throw new AppError("Car is unabailable");
+      throw new AppError("Car is unavailable");
     }
 
-    const renatalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(
+    const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(
       user_id
     );
 
-    if (renatalOpenToUser) {
-      throw new AppError("There's a rental progress for user!");
+    if (rentalOpenToUser) {
+      throw new AppError("There's a rental in progress for user!");
     }
 
     const dateNow = this.dateProvider.dateNow();
@@ -67,4 +69,4 @@ class CreateRentalUseCases {
   }
 }
 
-export { CreateRentalUseCases };
+export { CreateRentalUseCase };

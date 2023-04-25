@@ -1,19 +1,10 @@
 import { ICreateRentalDTO } from "@modules/rentals/dtos/ICreateRentalDTO";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
+
 import { IRentalsRepository } from "../IRentalsRepository";
 
 class RentalsRepositoryInMemory implements IRentalsRepository {
   rentals: Rental[] = [];
-
-  async findById(id: string): Promise<Rental> {
-    const rental = this.rentals.find((rental) => rental.id === id);
-    return rental;
-  }
-
-  async findByUser(user_id: string): Promise<Rental[]> {
-    const rental = this.rentals.filter((rental) => rental.user_id === user_id);
-    return rental;
-  }
 
   async findOpenRentalByCar(car_id: string): Promise<Rental> {
     return this.rentals.find(
@@ -36,13 +27,21 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
 
     Object.assign(rental, {
       car_id,
+      expected_return_date,
       user_id,
-      expected_return_date: new Date(),
+      start_date: new Date(),
     });
 
     this.rentals.push(rental);
 
     return rental;
+  }
+
+  async findById(id: string): Promise<Rental> {
+    return this.rentals.find((rental) => rental.id === id);
+  }
+  async findByUser(user_id: string): Promise<Rental[]> {
+    return this.rentals.filter((rental) => rental.user_id === user_id);
   }
 }
 
