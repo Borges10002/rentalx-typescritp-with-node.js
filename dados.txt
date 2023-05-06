@@ -156,3 +156,7 @@ bibioteca de validacao de datas
 
 bibioteca SUPERTESTE
  yarn add supertest @types/supertest -D
+
+ bibioteca de envia de email\
+  yarn add nodemailer
+  yarn add @types/nodemailer

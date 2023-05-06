@@ -1,6 +1,6 @@
 import fs from "fs";
 export const deleteFile = async (filename: string) => {
-  try {''
+  try {
     await fs.promises.stat(filename);
   } catch (error) {
     return;

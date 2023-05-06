@@ -56,7 +56,7 @@ Ao realizar um alguel, o status do carro devera ser alterado para indisponivel
 
 # Devolucão de carro
 
-**RF**
+**RF** ->Requisito funcionais
 Deve ser possivel realizar a devolucão de um carro
 
 **RN**
@@ -69,8 +69,19 @@ Caso haja multa, devera ser somado ao total do aluguel.
 
 # Listagem de Alugueis para usuário
 
-**RF**
+**RF** ->Requisito funcionais
 Deve ser possivel realizar a busca de todos os alugueis para o usuario
 
-**RN**
+**RN** -> Regra de negócios
 O usuario deve estar logado na aplicacao
+
+# Recuperar Senha
+
+**RF** ->Requisito funcionais
+Deve ser possivel o usuário recuperar a senha informada o e-mail
+O usuário deve receber um e-mail com o passo a passo para a recuperacao da senha
+O usuário deve conseguir inserir um nova senha
+
+**RN** -> Regra de negócios
+O usuário precisa informar uma nova senha
+o link enviado para a recuperacao deve expirar em 31 horas
