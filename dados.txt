@@ -1,3 +1,6 @@
+tutorial para resolver problema da versao typescript
+  https://github.com/microsoft/TypeScript/issues/52396
+  
 executa typescript em ambiente de develop
 yarn add ts-node-dev -D
 yarn @types/express -D
@@ -160,3 +163,4 @@ bibioteca SUPERTESTE
  bibioteca de envia de email\
   yarn add nodemailer
   yarn add @types/nodemailer
+  yarn add handlebars
