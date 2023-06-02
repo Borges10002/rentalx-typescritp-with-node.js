@@ -164,3 +164,19 @@ bibioteca SUPERTESTE
   yarn add nodemailer
   yarn add @types/nodemailer
   yarn add handlebars
+
+bibioteca para configuracao do aws amazon 
+  https://github.com/aws/aws-sdk-js#version-3x-now-available
+  https://stackoverflow.com/questions/70333681/for-an-amazon-s3-bucket-deployment-from-github-how-do-i-fix-the-error-accesscont
+  yarn add aws-sdk
+
+bibioteca para obter contenttype do arquivo
+yarn add mime
+yarn add @types/mime -D
+
+bibioteca para gerencia .env 
+  yarn add dotenv
+
+bibioteca para manipular a entidade
+  yarn add class-transformer
+
