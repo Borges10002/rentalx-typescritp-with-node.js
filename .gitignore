@@ -1,7 +1,3 @@
-Adicionei um .env ao meu arquivo .gitignore. Mas quando altero alguma coisa no .env, as alterações estão subindo junto no commit.
-
-Segue o meu .gitignore:
-
 # Logs
 logs
 *.log
