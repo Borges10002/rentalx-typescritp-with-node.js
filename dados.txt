@@ -180,3 +180,13 @@ bibioteca para gerencia .env
 bibioteca para manipular a entidade
   yarn add class-transformer
 
+bibioteca do babel
+yarn add @babel/cl
+yarn add @babel/core 
+yarn add @babel/node
+yarn add @babel/plugin-proposal-class-properties
+yarn add @babel/plugin-proposal-decorators
+yarn add @babel/preset-env
+yarn add babel-plugin-module-resolver
+yarn add babel-plugin-transform-typescript-metadata
+yarn add @babel/preset-typescript
