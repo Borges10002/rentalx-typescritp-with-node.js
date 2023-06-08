@@ -190,3 +190,21 @@ yarn add @babel/preset-env
 yarn add babel-plugin-module-resolver
 yarn add babel-plugin-transform-typescript-metadata
 yarn add @babel/preset-typescript
+
+bibioteca banco local
+  https://redis.io/download/
+  yarn add rate-limiter-flexible
+  yarn add redis
+  yarn add @types/redis -D
+  https://github.com/animir/node-rate-limiter-flexible/wiki/Express-Middleware
+
+  Como instalar o Chocolatey
+A instalação do Chocolatey é bem simples. Para isso, basta abrir o Power Shell do windows (O power shell, não o cmd) em modo administrador. Depois disso, basta executar os seguintes comandos:
+   Set-ExecutionPolicy AllSigned
+  Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+  choco install redis-64
+
+  bibioteca para controle de erros
+  https://sentry.io/auth/login/
+  yarn add @sentry/node

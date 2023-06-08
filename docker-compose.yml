@@ -5,7 +5,7 @@ services:
     image: postgres
     container_name: database_ignite
     restart: always
-    ports: 
+    ports:
       - 5431:5432
     environment:
       - POSTGRES_USER=admin
@@ -14,22 +14,24 @@ services:
     volumes:
       - pgdata:/data/postgres
 
+    redis:
+      image: redis:alpine
+      ports:
+        - 6379:6379
 
   app:
     build: .
     container_name: rentx
     restart: always
-    ports: 
+    ports:
       - 3333:3333
       - 9229:9229 #Você pode inserir essa porta tbm pra poder usar o debug
-    volumes: 
+    volumes:
       - .:/usr/app
-    links: 
+    links:
       - database
     depends_on:
       - database
-
-
 
 volumes:
   pgdata:
